@@ -97,7 +97,7 @@ if "Linux" in ostype:
 			sayme = ""
 
 		print (sayme)
-				
+
 		try:
 			file0 = homedir + "add_to_bash.py"
 			with open (file0, "r") as file:
@@ -186,14 +186,14 @@ if "Linux" in ostype:
 			print ("Failed to add cronjob. see add_to_cron.py for recommended job.\n")
 			updatecheck = "fail"
 
-		
+
 
 else:
 	print ("Unable to add cron or bash entries on a Windows system. I am skipping those steps.")
-	
+
 	hcheck = "negative"
 	while ("goon" not in hcheck):
-		
+
 		print ("In what directory would you like to place the /hasystem folder and associated files?\nFor Example: 'C:\\home\\user\\documents\\' Note: This location needs to currently exist.")
 		homedir = input('Path ')
 		homedir = homedir.replace("\\", "\\\\")
@@ -203,20 +203,20 @@ else:
 			print ("\nError. That directory does not exist. Please try again.\n")
 		else:
 			hcheck = "goon"
-			
-	print ("Pass")
-	homedir = homedir + "hasystem\\"
-	writeme = "homedir = \'" + homedir + "\\'\n"
-	writemehome = writeme
-	
 
-	
+	print ("Pass")
+	homedir = homedir + "hasystem/"
+	writeme = "homedir = \'" + homedir + "/'\n"
+	writemehome = writeme
+
+
+
 if not os.path.exists(homedir):
 	os.makedirs(homedir)
 	print (homedir + " has been successfully created.\n")
 else:
 	print (homedir + " already exists. Moving on.")
-	
+
 file1 = homedir + "playstate.txt"
 try:
 	with open (file1, "r") as file:
@@ -349,7 +349,7 @@ except IOError:
 		newfile = http.request('GET', url, preload_content=False)
 		newfile = newfile.data
 		#print (newfile)
-		
+
 		#print (writeme)
 		with open(file8, "wb") as file:
 			file.write(newfile)
@@ -361,13 +361,13 @@ except IOError:
 		with open(file8, "w") as file:
 			file.write(rewrite)
 		file.close()
-		
+
 		print ("File successfully moved to the necessary directory.")
 		updatecheck = "pass"
 	except FileNotFoundError:
 		print ("warning updateddb_pi.py does not exist. The system will be unable to build the shows and movie tables in your database.")
 		updatecheck = "fail"
-		
+
 file8a = homedir + "getshow.py"
 try:
 	with open (file8a, "r") as file:
@@ -381,7 +381,7 @@ except IOError:
 		newfile = http.request('GET', url, preload_content=False)
 		newfile = newfile.data
 		#print (newfile)
-		
+
 		#print (writeme)
 		with open(file8a, "wb") as file:
 			file.write(newfile)
@@ -393,7 +393,7 @@ except IOError:
 		with open(file8a, "w") as file:
 			file.write(rewrite)
 		file.close()
-		
+
 		print ("File successfully moved to the necessary directory.")
 		updatecheck = "pass"
 	except FileNotFoundError:
@@ -496,7 +496,7 @@ if not cur.fetchone():
 	WILDCARD = str(input('Wild Card Show: '))
 	cur.execute('INSERT INTO settings VALUES(?,?)', ('WILDCARD',WILDCARD))
 	sql.commit()
-	
+
 
 cur.execute('CREATE TABLE IF NOT EXISTS States(Option TEXT, State TEXT)')
 sql.commit()
@@ -547,4 +547,4 @@ if ("pass" in updatecheck):
 		os.system(command)
 	print ("If you needed that entry for cron it was: @reboot python /home/pi/hasystem/piplaystate.py &")
 else:
-	print ("The files system_setup.py can add have been added.\n Done!")            
+	print ("The files system_setup.py can add have been added.\n Done!")
