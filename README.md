@@ -38,6 +38,7 @@ Get the most recent version of the `system_setup.py` file. Place it in your home
 ```bash
 curl "https://raw.githubusercontent.com/amazingr4b/TBN-Plex/master/system_setup.py" -o "system_setup.py"
 python system_setup.py
+source aliases
 whatupnext
 ```
 You may need to update a library if you haven't updated python in a long time. As an example urllib3 can be out of date. If this is the case when you run `system_setup.py` you may see an error like:
